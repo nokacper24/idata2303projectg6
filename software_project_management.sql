@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS Employee (
 );
 
 CREATE TABLE IF NOT EXISTS Project (
-    projectname INTEGER PRIMARY KEY,
+    projectname TEXT PRIMARY KEY,
     leaderid INTEGER NOT NULL,
     budget FLOAT NOT NULL,
     startdate DATE NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS Project (
 
 CREATE TABLE IF NOT EXISTS Plan (
     planid INTEGER PRIMARY KEY,
-    projectname INTEGER NOT NULL,
+    projectname TEXT NOT NULL,
     startdate DATE NOT NULL,
     enddate DATE NOT NULL,
     FOREIGN KEY (projectname) REFERENCES Project(projectname)
