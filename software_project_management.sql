@@ -108,7 +108,15 @@ AND EmployeeActivity.hoursworked = mostWorkingTime.maxhours;
 
 
 -- Retrieve all the employee’s name and their least working time with respect to different project.
-
+-- output like: employeename | projectname | leastworkingtime
+WITH leastWorkingTime AS
+    (SELECT employeeid, projectname, MIN(hoursworked) AS minhours
+    FROM EmployeeActivity, Activity, Plan
+    WHERE EmployeeActivity.activityid = Activity.activityid AND Activity.planname = Plan.planname
+    GROUP BY employeeid, projectname)
+SELECT Employee.name, leastWorkingTime.projectname, leastWorkingTime.minhours
+FROM Employee, leastWorkingTime
+WHERE Employee.employeeid = leastWorkingTime.employeeid;
 
 
 -- Retrieve all the plans for project with order of their working period.
