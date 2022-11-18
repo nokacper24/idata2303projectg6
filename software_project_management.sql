@@ -112,3 +112,4 @@ AND EmployeeActivity.hoursworked = mostWorkingTime.maxhours;
 
 
 -- Retrieve all the plans for project with order of their working period.
+SELECT * FROM Plan WHERE projectname = "A" ORDER BY julianday(startdate);
