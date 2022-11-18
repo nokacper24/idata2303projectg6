@@ -96,6 +96,14 @@ WHERE costsOfPlansInA.totalcost = leastCost.mincost;
 
 
 -- For each employee retrieve the name, project name and plan name with the most working time.
+WITH mostWorkingTime AS
+    (SELECT employeeid, MAX(hoursworked) AS maxhours FROM EmployeeActivity GROUP BY employeeid)
+SELECT Employee.name, Project.projectname, Plan.planname
+FROM Employee, Project, Plan, Activity, EmployeeActivity, mostWorkingTime
+WHERE Employee.employeeid = mostWorkingTime.employeeid AND Project.projectname = Plan.projectname
+AND Plan.planname = Activity.planname AND Activity.activityid = EmployeeActivity.activityid
+AND EmployeeActivity.employeeid = mostWorkingTime.employeeid
+AND EmployeeActivity.hoursworked = mostWorkingTime.maxhours;
 
 
 
