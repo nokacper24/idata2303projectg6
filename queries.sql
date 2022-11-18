@@ -20,3 +20,4 @@ WHERE costsOfPlansInA.totalcost = leastCost.mincost;
 -- Retrieve all the employee’s name and their least working time with respect to different project.
 
 -- Retrieve all the plans for project with order of their working period.
+SELECT * FROM Plan WHERE projectname = "A" ORDER BY julianday(startdate);
